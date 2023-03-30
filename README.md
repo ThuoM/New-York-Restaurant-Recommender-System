@@ -1,1 +1,1 @@
-# New-York-Restaurant-Recommender-System
+Restaurant-Recommender-System
