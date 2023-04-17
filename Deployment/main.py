@@ -16,8 +16,11 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 login_manager=LoginManager()
-login_manager.init_app(app)
-
+# login_manager.init_app(app)
+login_manager = LoginManager(app)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 ##add review
 class CreatePostForm(FlaskForm):
@@ -121,6 +124,6 @@ def github():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
 
 
