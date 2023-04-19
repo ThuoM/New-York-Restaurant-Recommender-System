@@ -63,3 +63,16 @@ h6 {
   color: #666;
 }
 
+.recommendations {
+  max-height: 500px;
+  display: flex;
+  overflow-x: auto;
+
+}
+
+.recommendation-item {
+  padding: 15px;
+  width: 400px;
+  height: 300px;
+  object-fit: fill;
+}
