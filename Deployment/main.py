@@ -19,6 +19,7 @@ cursor = conn.cursor()
 
 #read from db table
 df = pd.read_sql("SELECT * FROM restaurants", conn)
+df['restaurant'] = df['name']
 
 def default_recommendations(df):
     random_samples = df.sample(n = 10, replace = True)
@@ -26,7 +27,7 @@ def default_recommendations(df):
 
 
 
-@app.route('/')
+@app.route('/',methods = ["GET", "POST"])
 def home():
     return render_template("index.html", recomms = default_recommendations(df))
 
@@ -37,6 +38,20 @@ def login():
 @app.route('/register')
 def register():
     return render_template('register.html')
+
+@app.route('/view-restaurant/<int:rest_id>',methods=['GET','POST'])
+def view_restaurant(rest_id):
+    rest_index = rest_id
+    for index, row in df.iterrows():
+        if index == rest_index:
+            name = df.at[index, 'restaurant']
+            image = df.at[index, 'image']
+            rating = df.at[index, 'rating']
+            reviews = df.at[index, 'reviews']
+            pricing = df.at[index, 'pricing']
+            location = df.at[index, 'location']
+            cuisine = df.at[index, 'cuisine']
+    return render_template('restaurant.html', image = image,name = name, rating = rating, reviews = reviews, pricing = pricing, location = location, cuisine = cuisine)
 
 
 if __name__ == "__main__":

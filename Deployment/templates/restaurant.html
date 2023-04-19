@@ -79,31 +79,37 @@
     </style>
  
   <body>
-    <div class="login-form">
-      <h1>Login</h1>
-      <form>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <input type="submit" value="Login">
-      </form>
-      <a href="{{url_for('register')}}">New User</a>
-    </div>
 
-    <footer style="background-color: black; padding: 80px;">
-      <p style="text-align: center; font-size: 14px; color: #666;">&copy; 2023 The Foodies. All rights reserved.</p>
-      <nav>
-        <ul class ="footer" style="display: flex; justify-content: center;">
-          <li style="color: #666;"><a href="{{url_for('home')}}">Back to Home</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Github</a></li>
-        </ul>
-      </nav>
-    </footer>
+      <div class="container">
+		<div class="text">
+			<div class = 'rest-header'>
+                <h2>{{ name }}, {{ location }}</i></h2>
+            </div>
+            <p style="color: chocolate;">Cusine : {{ cuisine }} </p>
+            <p style="color: red;">Available reviews </p>
+            <p >{{ reviews }} </p>
+
+		</div>
+		<div class="individual-image">
+			<img style="padding-top: 20px; padding-bottom: 30px;" src="{{ image }}" width="350px" height="350px">
+		</div>
+	</div>
     
-    
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
-    </html>
+      <footer style="background-color: black; padding: 80px;">
+        <p style="text-align: center; font-size: 14px; color: #666;">&copy; 2023 The Foodies. All rights reserved.</p>
+        <nav>
+          <ul class ="footer" style="display: flex; justify-content: center;">
+            <li style="color: #666;"><a href="{{url_for('home')}}">Back to Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Github</a></li>
+          </ul>
+        </nav>
+      </footer>
+      
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </body>
+      </html>

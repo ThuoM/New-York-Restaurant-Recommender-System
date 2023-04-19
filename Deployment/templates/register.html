@@ -24,7 +24,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">EATOUT 2.0   <i class="fa fa-cutlery" aria-hidden="true"></i>
+  <a class="navbar-brand" href="{{url_for('home')}}">EATOUT 2.0   <i class="fa fa-cutlery" aria-hidden="true"></i>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -90,23 +90,21 @@
       <a href="{{url_for('login')}}">Already have an account?</a>
     </div>
 
-    <footer style="background-color: #f2f2f2; padding: 20px;">
-        <p style="text-align: center; font-size: 14px; color: #666;">&copy; 2023 The Foodies. All rights reserved.</p>
-        <nav>
-          <ul class ="footer" style="display: flex; justify-content: center;">
-            <li><a href="file:///C:/Users/Karen/Flatiron/dsc-data-science-env-config/course_materials/Phase_5/Deployment/index.html">Back to home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Github</a></li>
-          </ul>
-        </nav>
-      </footer>
-      
-      
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-
-
-</html>
+    <footer style="background-color: black; padding: 80px;">
+      <p style="text-align: center; font-size: 14px; color: #666;">&copy; 2023 The Foodies. All rights reserved.</p>
+      <nav>
+        <ul class ="footer" style="display: flex; justify-content: center;">
+          <li style="color: #666;"><a href="{{url_for('home')}}">Back to Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Github</a></li>
+        </ul>
+      </nav>
+    </footer>
+    
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    </html>

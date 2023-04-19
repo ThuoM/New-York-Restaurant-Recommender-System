@@ -60,6 +60,7 @@ cursor = sqliteConnection.cursor()
 # Create Table
 cursor.execute('''
 		CREATE TABLE IF NOT EXISTS restaurants (
+        
 			name TEXT,
 			rating int,
             pricing nvarchar(50),

@@ -70,25 +70,36 @@
 
 <!-- Event advertisement poster -->
 
-<img class = "Ad-Image" src="{{ url_for('static', filename='burger_week.png') }}">
+<img class = "Ad-Image" src="{{ url_for('static', filename = 'background.png') }}">
 <br>
-<h6 style="text-align: center;">Recommended for you</h6>
 
-<!-- curated restaurant recommendations -->
 
-<div class = "recommendations">
-  {% for index, row in recomms.iterrows() %} 
-    <li class="recommendation-item"><img src="{{row.image}}"></li> 
-  {% endfor %} 
+<div class = 'container-1'>
+ 
 </div>
 
+<!-- curated restaurant recommendations -->
+<h6 style="text-align: center;">Recommended for you</h6>
+<br>
+
+<ul class = "recommendations">
+  {% for index, row in recomms.iterrows() %}
+    <li>
+      <a class = 'restaurant-name' href="{{url_for('view_restaurant', rest_id = index)}}">{{ row.restaurant }}</a> 
+      <img class = 'recommendation-item' src="{{ row.image }}" width="240px" height="250px" />
+      <div class="star-rating" style="text-align: center;">{{ row.rating }}</div>
+    </li>
+  {% endfor %}
+</ul>
 
 
-<footer style="background-color: #f2f2f2; padding: 200px;">
+
+
+<footer style="background-color: black; padding: 80px;">
   <p style="text-align: center; font-size: 14px; color: #666;">&copy; 2023 The Foodies. All rights reserved.</p>
   <nav>
     <ul class ="footer" style="display: flex; justify-content: center;">
-      <li><a href="file:///C:/Users/Karen/Flatiron/dsc-data-science-env-config/course_materials/Phase_5/Deployment/index.html">Back to top</a></li>
+      <li style="color: #666;"><a href="{{url_for('home')}}">Back to Top</a></li>
       <li><a href="#">About us</a></li>
       <li><a href="#">Github</a></li>
     </ul>

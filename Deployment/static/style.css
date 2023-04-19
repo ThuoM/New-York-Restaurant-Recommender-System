@@ -23,10 +23,12 @@
   font-family: 'Century Gothic';
 }
 
+
 .Ad-Image {
-  width: 1345px;
-  height: 880px;
+  width: 1349.2px;
+  height: 700px;
   padding-bottom: 50px;
+  
 }
 .recommendations {
   padding: 30px 40px 30px 80px;
@@ -52,27 +54,79 @@ h6 {
 }
 
 .restaurant-name {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
+  text-align: center !important;
+  color: black;
+ 
 }
 
 .footer li {
   display:inline;
   padding: 10px 40px;
-  color: #666;
+  color: black;
+  
 }
 
 .recommendations {
-  max-height: 500px;
+  height: 400px;
+  width: auto;
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
+  overflow-y:hidden ;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 90px;
+  list-style: none;
+ 
 
 }
 
 .recommendation-item {
-  padding: 15px;
-  width: 400px;
-  height: 300px;
-  object-fit: fill;
+  padding: 10px;
+  object-fit: cover;
+  font-family: "Century Gothic";
+ 
+}
+
+.container-1 {
+  padding: 50px;
+}
+
+.star-rating {
+  display: inline-block;
+  font-size: 20px;
+}
+
+.star-rating:before {
+  content: "\2605";
+  color: #ccc;
+}
+
+.star-rating:after {
+  content: "\2605";
+  color: gold;
+  position:static;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.text {
+  flex: 1;
+  padding: 20px;
+}
+.individual-image {
+  flex: 1;
+  padding: 20px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+rest-header {
+  display: inline;
 }
