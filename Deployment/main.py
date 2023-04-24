@@ -7,15 +7,27 @@ from wtforms.fields.simple import EmailField, PasswordField
 from wtforms.validators import DataRequired, URL,Email
 import sqlite3
 import pandas as pd
+from flask_login import UserMixin,LoginManager,login_user,logout_user,current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
+
+#login_manager=LoginManager()
+#login_manager.init_app(app)
+
+#Login manager
+
 #create connection
 conn = sqlite3.connect('restaurant_recommender.db')
 cursor = conn.cursor()
+
+
+#User table
+
 
 #read from db table
 df = pd.read_sql("SELECT * FROM restaurants", conn)
@@ -25,19 +37,40 @@ def default_recommendations(df):
     random_samples = df.sample(n = 10, replace = True)
     return random_samples
 
+#add review and rating form
 
+
+#Registration form
+class RegisterNewUserForm(FlaskForm):
+    name=StringField('Name',validators=[DataRequired()])
+    password=PasswordField('Password',validators=[DataRequired()])
+    submit = SubmitField("Register")
+
+#Login form
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
 
 @app.route('/',methods = ["GET", "POST"])
 def home():
     return render_template("index.html", recomms = default_recommendations(df))
 
-@app.route('/login')
+@app.route('/login',methods=['POST','GET'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if request.method =='POST':
+        username = request.form.get('Username')
+        password = request.form.get('Password')
+    return render_template('login.html',form = form)
 
-@app.route('/register')
+@app.route('/register',methods=['POST','GET'])
 def register():
-    return render_template('register.html')
+    form = RegisterNewUserForm()
+    if request.method =='POST':
+        username = request.form.get('Name')
+        password = request.form.get('Password')
+    return render_template('register.html', form = form)
 
 @app.route('/view-restaurant/<int:rest_id>',methods=['GET','POST'])
 def view_restaurant(rest_id):

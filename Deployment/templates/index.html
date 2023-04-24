@@ -44,7 +44,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">African</a>
           <a class="dropdown-item" href="#">Asian</a>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Vegan</a>
         </div>
       </li>
@@ -53,10 +52,9 @@
           Search by Location
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Location 1</a>
-          <a class="dropdown-item" href="#">Location 2</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Location 3</a>
+          <a class="dropdown-item" href="#">New York</a>
+          <a class="dropdown-item" href="#">Brooklyn</a>
+          <a class="dropdown-item" href="#">Manhattan</a>
         </div>
       </li>
       <li>
@@ -84,15 +82,25 @@
 
 <ul class = "recommendations">
   {% for index, row in recomms.iterrows() %}
-    <li>
-      <a class = 'restaurant-name' href="{{url_for('view_restaurant', rest_id = index)}}">{{ row.restaurant }}</a> 
-      <img class = 'recommendation-item' src="{{ row.image }}" width="240px" height="250px" />
-      <div class="star-rating" style="text-align: center;">{{ row.rating }}</div>
+    <li class="card-list">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ row.image }}" width="240px" height="250px" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-title">{{ row.restaurant }}</p>
+          <div class="star-rating" style="text-align: center;">
+            {% for i in range(row.rating) %}
+              <span class="fa fa-star checked"></span>
+            {% endfor %}
+            {% for i in range(5 - row.rating) %}
+              <span class="fa fa-star"></span>
+            {% endfor %}
+          </div>
+          <a href="{{url_for('view_restaurant', rest_id = index)}}" class="btn btn-light">See more</a>
+        </div>
+      </div>
     </li>
   {% endfor %}
 </ul>
-
-
 
 
 <footer style="background-color: black; padding: 80px;">

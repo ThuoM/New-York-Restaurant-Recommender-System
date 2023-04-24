@@ -67,7 +67,7 @@ h6 {
 }
 
 .recommendations {
-  height: 400px;
+  height: 450px;
   width: auto;
   display: flex;
   overflow-x: scroll;
@@ -91,24 +91,6 @@ h6 {
   padding: 50px;
 }
 
-.star-rating {
-  display: inline-block;
-  font-size: 20px;
-}
-
-.star-rating:before {
-  content: "\2605";
-  color: #ccc;
-}
-
-.star-rating:after {
-  content: "\2605";
-  color: gold;
-  position:static;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -130,3 +112,20 @@ h6 {
 rest-header {
   display: inline;
 }
+
+.fa {
+  font-size: 20px;
+}
+
+.fa-star {
+  color: #bbb;
+}
+
+.checked {
+  color: orange;
+}
+
+.card-list {
+  padding-left: 20px;
+}
+
