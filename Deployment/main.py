@@ -124,6 +124,7 @@ def view_restaurant(rest_id):
 def show_recomms():
     r_df = pd.DataFrame(columns = df.columns)
     query = request.form['search']
+    query = str(query)
     recomms = contentB_recommend(str(query))
     recomms['restaurant'] = recomms['name']
 
