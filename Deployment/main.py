@@ -7,7 +7,7 @@ from wtforms.fields.simple import EmailField, PasswordField
 from wtforms.validators import DataRequired, URL,Email
 import sqlite3
 import pandas as pd
-#from flask_login import UserMixin,LoginManager,login_user,logout_user,current_user
+# from flask_login import UserMixin,LoginManager,login_user,logout_user,current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import dill as pickle
@@ -18,26 +18,27 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import operator
-#nltk.download('stopwords')
-#nltk.download('punkt')
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('averaged_perceptron_tagger')
+# nltk.download('wordnet')
 
 
 
 #load models
-with open('content_based.pkl' , 'rb') as f:
+with open('content_based.pkl', 'rb') as f:
     contentB_recommend = pickle.load(f)
 
 filtered_restaurant_df = pd.read_pickle('restaurants.pkl')
+print(filtered_restaurant_df.head())
 
-with open('constituents_list.pkl' , 'rb') as f:
+with open('constituents_list.pkl', 'rb') as f:
     constituents_list = pd.read_pickle(f)
 
-with open('prices.pkl' , 'rb') as f:
+with open('prices.pkl', 'rb') as f:
     price_map = pd.read_pickle(f)
 
-with open('sentence_processor.pkl' , 'rb') as f:
+with open('sentence_processor.pkl', 'rb') as f:
     process_sentences = pickle.load(f)
 
 lemmatizer = WordNetLemmatizer()
@@ -49,37 +50,47 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 
-#create connection
+# create connection
 conn = sqlite3.connect('restaurant_recommender.db')
 cursor = conn.cursor()
 
-#read from db table
+# read from db table
 df = pd.read_sql("SELECT * FROM restaurants", conn)
 df['restaurant'] = df['name']
 
-#default recommendations on home page
+# default recommendations on home page
+
+
 def default_recommendations(df):
     random_samples = df.sample(n = 10, replace = True)
     return random_samples
 
-#random 4 cusines from db on search bar
+# random 4 cusines from db on search bar
+
+
 def search_cuisines(df):
     cuisines = list(df['cuisine'])
     random_cusines = random.sample(cuisines, 4)
     return random_cusines
 
-#random locations on search bar
+# random locations on search bar
+
+
 def search_location(df):
     locations = ['Brooklyn', 'New York', 'Manhattan']
     return locations
 
-#Registration form
+# Registration form
+
+
 class RegisterNewUserForm(FlaskForm):
     name=StringField('Name',validators=[DataRequired()])
     password=PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField("Register")
 
-#Login form
+# Login form
+
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -124,13 +135,14 @@ def view_restaurant(rest_id):
 def show_recomms():
     r_df = pd.DataFrame(columns = df.columns)
     query = request.form['search']
+    print(query)
     query = str(query)
-    recomms = contentB_recommend(str(query))
+    recomms = contentB_recommend(query)
     recomms['restaurant'] = recomms['name']
 
-    #find match in db table
+    # find match in db table
     for index, row in recomms.iterrows():
-        name =  row.restaurant.title()
+        name = row.restaurant.title()
         for index, row in df.iterrows():
             if name == row.restaurant.title():
                 r_df = r_df.append(row, ignore_index = False)
