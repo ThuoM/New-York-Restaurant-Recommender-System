@@ -1,6 +1,5 @@
-# **Book-Recommendation-System**
+# **Restaurant-Recommendation-System**
 
-<img src="Images\book3.png" alt="books" width="750" height="400">
 
 #### **Authors**: 
 [David Mwiti](david.mwiti@student.moringaschool.com),
@@ -70,9 +69,15 @@ This uses the information on the books together with information a user will inp
 
 We will be using the matrix factorization with SVD(Singular Value Decomposition) to ensure the latent features in the dataset of the user restaurant matrix are captured to further understand how users rate the restaurants they interact with.
 
+Structure:
+<img src="images\Manual_CF.png"  width="750" height="400">
+
 **Nueral Collaborative Filtering Recommendation system:**
 
 Utilizes neural networks to model user-restaurant interactions. Learns embeddings or representations for users and restaurants in a low-dimensional space and can capture non-linear relationships.
+
+Structure:
+<img src="images\Manual_NCF.png"  width="750" height="400">
 
 
 ## Evaluation
@@ -127,9 +132,15 @@ See the full analysis in the [Jupyter Notebook](https://github.com/ThuoM/Restaur
 ***
 
 ```
-├── Data
-├── Images
-├── Book Recommendation System.pptx.pdf
-├── Jumia Book Recommendation System Data Report.pdf
+├── Deployment
+├── documents
+├── images
+├── logs
+├── models
+├── reviews
+├── scrapper
+├── Restaurant_Recommender_System.ipynb
+├── final_revs.csv
 ├── README.md
-└── index.ipynb
+├── restaurant_data.csv
+└── restaurant_data1.csv
