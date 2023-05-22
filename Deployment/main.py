@@ -7,6 +7,9 @@ from wtforms.fields.simple import EmailField, PasswordField
 from wtforms.validators import DataRequired, URL,Email
 import sqlite3
 import pandas as pd
+from surprise import Reader, Dataset, SVD, accuracy
+from surprise.model_selection import cross_validate
+from surprise.model_selection import train_test_split
 # from flask_login import UserMixin,LoginManager,login_user,logout_user,current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
@@ -26,8 +29,11 @@ import operator
 
 
 #load models
-with open('content_based.pkl', 'rb') as f:
-    contentB_recommend = pickle.load(f)
+#with open('content_base_r.pkl', 'rb') as f:
+#    contentB_recommend = pickle.load(f)
+
+with open('svd.pkl', 'rb') as f:
+    hybrid_recommender = pickle.load(f)
 
 filtered_restaurant_df = pd.read_pickle('restaurants.pkl')
 print(filtered_restaurant_df.head())
@@ -135,9 +141,10 @@ def view_restaurant(rest_id):
 def show_recomms():
     r_df = pd.DataFrame(columns = df.columns)
     query = request.form['search']
+    query = ''.join(query)
     print(query)
-    query = str(query)
-    recomms = contentB_recommend(query)
+    recomms = hybrid_recommender(query)
+    print(recomms.head())
     recomms['restaurant'] = recomms['name']
 
     # find match in db table
